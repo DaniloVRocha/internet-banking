@@ -1,0 +1,139 @@
+<div class="container">
+  <div class="row mt-3">
+
+    <h1 class="display-4">
+      <i class="fas fa-money-bill-wave"></i> Caixa Eletrônico
+    </h1>
+    <div class="col-6 mt-5">
+      <h1 class="display-6">Selecione a Operação</h1>
+      <hr>
+
+      <div class="card text-white bg-dark" style="width: 18rem;">
+        <div class="card-body p-6 mt-6">
+          <select class="form-select" id="escolha" [(ngModel)]="escolha" (ngModelChange)="onChangeOperacao()">
+            <option (value)="0">Selecione a Operação</option>
+            <option (value)="1">Saque</option>
+            <option (value)="2">Depósito</option>
+            <option (value)="3">Transferencia</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="jumbotron col-6 mt-5">
+
+      <h1 class="display-6">Operações Disponíveis</h1>
+      <hr>
+      <div class="mt-3">
+        <h1 class="display-6"><i class="fas fa-arrow-up"></i><i class="fas fa-university"></i><i
+            class="fas fa-arrow-down mt-3"></i> Transferência Bancária</h1>
+      </div>
+      <hr>
+      <div class="mt-3" style="margin-left: 1.5%;">
+        <h1 class="display-6"><i class="fas fa-university"></i><i class="fas fa-arrow-down"></i>&nbsp;&nbsp; Efetuar
+          Saque</h1>
+      </div>
+      <hr>
+      <div class="mt-3" style="margin-left: 1.5%;">
+        <h1 class="display-6"><i class="fas fa-arrow-up"></i> <i class="fas fa-university"></i>&nbsp;&nbsp; Efetuar
+          Depósito</h1>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="row mt-5">
+
+    <h1 class="display-6 text-center" [hidden]="operacao!=1"><i class="fas fa-university"></i><i
+        class="fas fa-arrow-down"></i> Efetuar Saque</h1>
+    <h1 class="display-6 text-center" [hidden]="operacao!=2"><i class="fas fa-arrow-up"></i> <i
+        class="fas fa-university"></i>Efetuar Depósito</h1>
+    <h1 class="display-6 text-center" *ngIf = 'operacao==3'><i class="fas fa-arrow-up"></i> <i
+        class="fas fa-university"></i><i class="fas fa-arrow-down mt-3"></i>Transferência Bancária</h1>
+
+    <hr>
+    <div class="row">
+      <div class="col-6 mt-3">
+        <form [formGroup]="formValue" (ngSubmit)="sacar()" [hidden]="operacao!=1">
+          <div class="form-group mt-3">
+            <label>Agencia: </label>
+            <input type="number" class="form-control" id="agencia" formControlName="agencia"
+              placeholder="Informe a Agencia">
+
+          </div>
+          <div class="form-group mt-3">
+            <label>Número da Conta: </label>
+            <input type="number" class="form-control" id="conta" formControlName="numeroConta"
+              placeholder="Informe o Número da Conta">
+          </div>
+          <div class="form-group mt-3">
+            <label>Valor da Transação: </label>
+            <input type="number" class="form-control" id="conta" formControlName="valor"
+              placeholder="Informe o Valor da Transação">
+          </div>
+          <button type="submit" class="btn btn-success mt-3" style="float: right;" [disabled]="!formValue.valid">
+            Efetuar Saque</button>
+            <button type="reset" class="btn btn-danger m-3" style="float: right;">Limpar Campos</button>
+
+        </form>
+
+        <form [formGroup]="formValue" (ngSubmit)="depositar()" [hidden]="operacao!=2">
+          <div class="form-group mt-3">
+            <label>Agencia: </label>
+            <input type="number" class="form-control" id="agencia" formControlName="agencia"
+              placeholder="Informe a Agencia">
+          </div>
+          <div class="form-group mt-3">
+            <label>Número da Conta: </label>
+            <input type="number" class="form-control" id="conta" formControlName="numeroConta"
+              placeholder="Informe o Número da Conta">
+          </div>
+          <div class="form-group mt-3">
+            <label>Valor da Transação: </label>
+            <input type="number" class="form-control" id="conta" formControlName="valor"
+              placeholder="Informe o Valor da Transação">
+          </div>
+          <button type="submit" class="btn btn-success mt-3" style="float: right;" [disabled]="!formValue.valid">Efetuar
+            Depósito</button>
+          <button type="reset" class="btn btn-danger m-3" style="float: right;">Limpar Campos</button>
+        </form>
+      </div>
+    </div>
+    <form [formGroup]="formValueTransferencia" (ngSubmit)="transferencia()" [hidden]="operacao!=3">
+      <div class="row">
+        <div class="col-6 mt-3">
+          <div class="form-group mt-3 ">
+            <label>Número da conta de Origem: </label>
+            <input type="number" class="form-control" id="numeroDestino" formControlName="numeroContaOrigem"
+              placeholder="Insira o Número da conta de Origem">
+          </div>
+          <div class="form-group mt-3">
+            <label>Agencia de Origem: </label>
+            <input type="number" class="form-control" id="agenciaDestino" formControlName="agenciaOrigem"
+              placeholder="Insira a Agencia de Origem">
+          </div>
+        </div>
+        <div class="col-6 mt-3">
+          <div class="form-group mt-3 ">
+            <label>Número da conta de Destino: </label>
+            <input type="number" class="form-control" id="numeroDestino" formControlName="numeroContaDestino"
+              placeholder="Insira o Número da conta de Destino">
+          </div>
+          <div class="form-group mt-3">
+            <label>Agencia de Destino: </label>
+            <input type="number" class="form-control" id="agenciaDestino" formControlName="agenciaDestino"
+              placeholder="Insira a Agencia de Destino">
+          </div>
+
+          <div class="form-group mt-3">
+            <label>Valor da Transferencia: </label>
+            <input type="number" class="form-control" id="agenciaDestino" formControlName="valor"
+              placeholder="Insira a Agencia de Destino">
+          </div>
+          <button type="submit" class="btn btn-success mt-3" style="float: right;"
+            [disabled]="!formValueTransferencia.valid">Efetuar Transferencia</button>
+            <button type="reset" class="btn btn-danger m-3" style="float: right;">Limpar Campos</button>
+        </div>
+
+      </div>
+    </form>
+  </div>

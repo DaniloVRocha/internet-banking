@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1 class="display-6">
+        <i class="fa-solid fa-address-book"></i> Listagem de Clientes
+      </h1>
+      <hr />
+      <button type="button" class="btn btn-success" routerLink="cadastrar" style="float: right">
+        <i class="fa-solid fa-plus"></i> Cadastrar Novo Cliente
+      </button>
+      <div class="container mt-5">
+
+        <table class="table table-dark">
+
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Email</th>
+              <th scope="col">Ativo</th>
+              <th scope="col" style="text-align: center">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cliente of clientes">
+              <th scope="row">{{ cliente.id }}</th>
+              <td>{{ cliente.nome }}</td>
+              <td>{{ cliente.email }}</td>
+              <td>
+                <i *ngIf="cliente.ativo" class="fa-solid fa-check text-success"></i>
+                <i *ngIf="!cliente.ativo" class="fa-solid fa-xmark text-danger "></i>
+              </td>
+              <td>
+                <div class="row">
+                  <div class="col-6">
+                    <button type="button" class="btn btn-warning" [routerLink]="['editar', cliente.id]">
+                      <i class="fa-solid fa-pencil"></i> Editar
+                    </button>
+                  </div>
+                  <div class="col-6">
+                    <button type="button" class="btn btn-danger" (click)="confirmarExclusao(cliente.id);">
+                      <i class="fa-solid fa-trash"></i> Excluir
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="container">
+
+  <div class="card text-white bg-dark" style="width: 38rem; float: right;">
+    <div class="card-body">
+      <form class="form-inline my-2 my-lg-0">
+        <div class="row">
+          <div class="col-4">
+            <input class="form-control mr-sm-2" type="search" [(ngModel)]="agencia" [ngModelOptions]="{standalone: true}" placeholder="Agencia">
+          </div>
+          <div class="col-4">
+            <input class="form-control mr-sm-2" type="search" [(ngModel)]="conta" [ngModelOptions]="{standalone: true}" placeholder="Conta">
+          </div>
+          <div class="col-4">
+            <button class="btn btn-success my-2 my-sm-0" (click) = "buscarTodosExtratos()" type="submit">Buscar</button>
+          </div>
+        </div>
+        </form>
+    </div>
+  </div>
+</div>
+<div class="container">
+<h1 class="display-6 mt-3"><i class="fas fa-file-invoice-dollar"></i> Visualizar Extrato</h1>
+<br>
+
+<nav class="navbar navbar-light mt-3 mb-3" style="background-color: #e3f2fd;"[hidden]="ativo!=true">
+  <h3 class="text-black" style=" margin-left: 30px;">Agencia : {{agencia}}</h3>
+  <h3 class="text-black" style="margin-left: 10px;">Conta : {{conta}}</h3>
+  <h3 class="text-black" style="float: right; margin-right: 30px;">Saldo Disponível: {{saldo | currency: 'BRL'}}</h3>
+</nav>
+
+<table class="table table-dark mt-5"[hidden]="ativo!=true">
+  <thead>
+    <tr>
+      <th scope="col">Id Operação</th>
+      <th scope="col">Tipo da Operação</th>
+      <th scope="col">Data e Hora</th>
+      <th scope="col">Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let op of extratos">
+      <th scope="row">{{op.id}}</th>
+      <td>
+        <a class="text-success" *ngIf="op.tpOperacao == 'C' " ><i class="fas fa-plus-circle text-success"></i> Entrada</a>
+        <a class="text-danger" *ngIf="op.tpOperacao == 'D' " ><i class="fas fa-plus-circle text-danger"></i> Saida</a>
+      </td>
+      <td>{{op.dataHora}}</td>
+      <td>{{op.valor | currency: 'BRL'}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

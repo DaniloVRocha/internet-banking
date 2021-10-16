@@ -1,0 +1,46 @@
+<div class="container">
+  <h1 class="display-6">
+    <i class="fa-solid fa-user-plus"></i> Cadastrar Contas
+    <button type="button" class="btn btn-danger mt-3" routerLink="/contas" style="float: right;"><i
+        class="fa-solid fa-arrow-left"></i> Voltar</button>
+  </h1>
+  <hr>
+  
+  <form [formGroup]="formValue" (ngSubmit)="preencherForm()" >
+    <div class="row">
+      <div class="col-6">
+        <h1 class="display-6">Formulário de Cadastro</h1>
+        <div class="form-group mt-3">
+          <label>ID cliente: </label>
+          <input type="number" class="form-control" placeholder="Digite a Agencia" [(ngModel)]= "idCliente"  [ngModelOptions]="{standalone: true}" (ngModelChange)="preencherDadosCliente()">
+        </div>
+        <div class="form-group">
+          <label>Agencia: </label>
+          <input type="number" class="form-control"formControlName="agencia" placeholder="Digite a Agencia">
+        </div>
+        <div class="form-group">
+          <label>Numero da Conta: </label>
+          <input type="number" class="form-control"formControlName="numero" placeholder="Digite a Agencia">
+        </div>
+        <div class="form-group">
+          <label>Saldo: </label>
+          <input type="number" class="form-control"formControlName="saldo" placeholder="Digite o Saldo Inicial">
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" style="float: right;">Cadastrar nova Conta</button>
+
+      </div>
+      <div class="col-6"  [hidden]="mostrarDados!=true">
+        <h1 class="display-6">Informações do Cliente</h1>
+        <h6 class="mt-5">Nome: {{nome}}</h6>
+        <h6 class="mt-3">CPF: {{cpf}}</h6>
+        <h6 class="mt-3">Email: {{email}}</h6>
+        <h6 class="mt-3">Ativo:<a class="text-success" *ngIf="ativo==true "> Ativo</a>
+          <a class="text-success" *ngIf="ativo==false "> Inativo</a>
+        </h6>
+        <h6 class="mt-3">Observações: {{observacoes}}</h6>
+
+      </div>
+    </div>
+
+  </form>
+</div>
