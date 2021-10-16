@@ -9,6 +9,8 @@ Imagem Projeto Final:
 
 ![alt text](https://repository-images.githubusercontent.com/417950425/bed0c200-6a52-4d1f-a74a-7dca97c60b81)
 
+Treinamento ministrado por Eder Ferreira (efmendes@indracompany.com) e Rafael Ferreira (rferreiraa@indracompany.com)
+
 **Conteúdo do Treinamento**
 
 - Git
